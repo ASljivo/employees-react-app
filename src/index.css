@@ -1,0 +1,6 @@
+body {
+    background: url('./assets/images/computer-background.jpg') no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+}

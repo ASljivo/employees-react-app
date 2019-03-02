@@ -1,0 +1,29 @@
+@import 'variables.scss';
+.common-table {
+    @extend %text-style;
+    border-collapse: collapse;
+    margin: 20px 0;
+    width: 100%;
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #A4D052;
+    }
+    td,
+    th {
+        padding: 8px;
+        color: $text-color;
+        @extend %text-style;
+    }
+    tr {
+        border-bottom: 1px solid lightgray;
+        &:hover {
+            background-color: #ddd;
+            cursor: pointer;
+        }
+        &.active-row {
+            background-color: #ddd;
+        }
+    }
+}

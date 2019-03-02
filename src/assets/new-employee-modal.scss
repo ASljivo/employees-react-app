@@ -1,0 +1,66 @@
+@import 'variables.scss';
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 1;
+    animation: fadeBounce 500ms ease-in-out forwards;
+    -webkit-animation: fadeBounce 500ms ease-in-out forwards;
+    .popup {
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 5px;
+        width: 50%;
+        position: relative;
+        transition: all 5s ease-in-out;
+        h2 {
+            margin-top: 0;
+            @extend %text-style;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            transition: all 200ms;
+            font-size: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #333;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #06D85F;
+        }
+        .content {
+            max-height: 30%;
+            overflow: auto;
+        }
+    }
+    @media screen and (max-width: 700px) {
+        .popup {
+            width: 70%;
+        }
+    }
+}
+
+@-webkit-keyframes fadeBounce {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeBounce {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
