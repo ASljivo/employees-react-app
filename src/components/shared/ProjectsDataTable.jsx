@@ -1,4 +1,5 @@
 import React from "react";
+import { setLabelStatus } from "../../helper";
 
 const ProjectsDataTable = (props) => {
   return (
@@ -19,7 +20,7 @@ const ProjectsDataTable = (props) => {
             <td>{item.name}</td>
             <td>{item.startDate}</td>
             <td>{item.endDate}</td>
-            <td>{item.status}</td>
+            <td style={setLabelStatus(item.status)}>{item.status}</td>
           </tr>
         ))}
       </tbody>

@@ -3,7 +3,7 @@ import Joi from "joi-browser";
 import PropTypes from "prop-types";
 import FormMethods from "./../shared/FormMethods";
 import { getProjects } from "../../services/projectsService";
-import { generateUUID } from "../../helper";
+import { generateUUID, setLabelStatus } from "../../helper";
 
 class ProjectForm extends FormMethods {
 
@@ -117,15 +117,17 @@ class ProjectForm extends FormMethods {
                   <option value="ACTIVE">Active</option>
                   <option value="PASSIVE">Passive</option>
                 </select>
-              ) : (<span className="noedit-data text">{data.status}</span>)}
+              ) : (<span className="noedit-data text" style={setLabelStatus(data.status)}>{data.status}</span>)}
             {errors.projects && <div className="error-msg">{errors.projects}</div>}
           </div>
         </div>
 
-        {this.props.edit &&
+        {
+          this.props.edit &&
           <div className="row">
             <input disabled={this.validateForm()} type="submit" value="Submit" />
-          </div>}
+          </div>
+        }
       </form >
     );
   }

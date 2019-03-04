@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { getProjectsDetails } from "../../services/projectsService";
+import { getProjectsDetails, updateProject } from "../../services/projectsService";
+import ProjectForm from "./ProjectForm"
 
 class ProjectDetails extends Component {
   state = {
@@ -12,8 +13,15 @@ class ProjectDetails extends Component {
     this.setState({ project: data });
   }
 
+  doSubmit = async (updatedData) => {
+    try {
+      const { data } = await updateProject(updatedData);
+      this.setState({ project: data });
+    } catch (error) { }
+    this.setState({ editProject: false })
+  };
+
   render() {
-    const { project } = this.state
     return (
       <div className="content content-box">
         <h2>Project details</h2>
@@ -23,26 +31,8 @@ class ProjectDetails extends Component {
           {this.state.editProject && <button className="btn-prim" onClick={() => this.setState({ editProject: false })}>Cancel</button>}
         </div>
 
-        <table>
-          <tbody>
-            <tr>
-              <td className="data-title">Name</td>
-              <td className="data-item">{project.name}</td>
-            </tr>
-            <tr>
-              <td className="data-title">Start date</td>
-              <td className="data-item">{project.startDate}</td>
-            </tr>
-            <tr>
-              <td className="data-title">End date</td>
-              <td className="data-item">{project.endDate}</td>
-            </tr>
-            <tr>
-              <td className="data-title">Status</td>
-              <td className="data-item">{project.status}</td>
-            </tr>
-          </tbody>
-        </table>
+        <ProjectForm data={this.state.project} doSubmit={this.doSubmit} edit={this.state.editProject}></ProjectForm>
+
       </div>);
   }
 }
