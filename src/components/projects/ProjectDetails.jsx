@@ -1,6 +1,9 @@
-import React, { Component } from "react";
-import { getProjectsDetails, updateProject } from "../../services/projectsService";
-import ProjectForm from "./ProjectForm"
+import React, { Component } from 'react';
+import {
+  getProjectsDetails,
+  updateProject
+} from '../../services/projectsService';
+import ProjectForm from './ProjectForm';
 
 class ProjectDetails extends Component {
   state = {
@@ -13,12 +16,12 @@ class ProjectDetails extends Component {
     this.setState({ project: data });
   }
 
-  doSubmit = async (updatedData) => {
+  doSubmit = async updatedData => {
     try {
       const { data } = await updateProject(updatedData);
       this.setState({ project: data });
-    } catch (error) { }
-    this.setState({ editProject: false })
+    } catch (error) {}
+    this.setState({ editProject: false });
   };
 
   render() {
@@ -27,13 +30,33 @@ class ProjectDetails extends Component {
         <h2>Project details</h2>
 
         <div className="row">
-          {!this.state.editProject && <button className="btn-prim" onClick={() => this.setState({ editProject: true })}>Edit</button>}
-          {this.state.editProject && <button className="btn-prim" onClick={() => this.setState({ editProject: false })}>Cancel</button>}
+          {!this.state.editProject && (
+            <button
+              className="btn-prim"
+              onClick={() => this.setState({ editProject: true })}
+            >
+              Edit
+            </button>
+          )}
+          {this.state.editProject && (
+            <button
+              className="btn-prim"
+              onClick={() => this.setState({ editProject: false })}
+            >
+              Cancel
+            </button>
+          )}
         </div>
 
-        <ProjectForm data={this.state.project} doSubmit={this.doSubmit} edit={this.state.editProject}></ProjectForm>
-
-      </div>);
+        {this.state.project.id && (
+          <ProjectForm
+            data={this.state.project}
+            doSubmit={this.doSubmit}
+            edit={this.state.editProject}
+          />
+        )}
+      </div>
+    );
   }
 }
 
