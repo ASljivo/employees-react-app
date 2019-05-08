@@ -1,8 +1,7 @@
-import React from "react";
-import "../../assets/table-style.scss"
+import React from 'react';
+import '../../assets/table-style.scss';
 
-
-const EmployeesDataTable = (props) => {
+const EmployeesDataTable = props => {
   return (
     <table className="common-table">
       <thead>
@@ -10,22 +9,27 @@ const EmployeesDataTable = (props) => {
           <th>First name</th>
           <th>Last name</th>
           <th>Date of birth</th>
-          <th>Status</th>
+          <th>Title</th>
         </tr>
       </thead>
       <tbody>
         {props.employees.map((item, index) => (
-
-          <tr className={index === props.selectedTableRowIndex ? "active-row" : ""} key={item.id} onClick={props.getEmployeesDetails.bind(this, item, index)}>
+          <tr
+            className={
+              index === props.selectedTableRowIndex ? 'active-row' : ''
+            }
+            key={item.id}
+            onClick={props.getEmployeesDetails.bind(this, item, index)}
+          >
             <td>{item.firstName}</td>
             <td>{item.lastName}</td>
-            <td>{item.title}</td>
             <td>{item.dateOfBirth}</td>
+            <td>{item.title}</td>
           </tr>
         ))}
       </tbody>
     </table>
   );
-}
+};
 
 export default EmployeesDataTable;
